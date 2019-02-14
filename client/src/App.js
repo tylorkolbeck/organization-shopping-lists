@@ -1,26 +1,60 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link
+} from 'react-router-dom'
+
+// import Products from '../src/Containers/Products/Products'
+// import Home from '../src/Containers/Home/Home'
+
+import createBrowserHistory from 'history/createBrowserHistory'
+import asyncComponent from '../src/utilities/AsyncComponent'
+
+// IMPORT FOR LAZY LOADING
+const Products = asyncComponent(() => 
+  import('../src/Containers/Products/Products')
+    .then(module => module.default)
+)
+
+const Home = asyncComponent(() => 
+  import('../src/Containers/Home/Home')
+    .then(module => module.default)
+)
+
+const history = createBrowserHistory()
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Router history={history}>
+        <div className="App">
+          <header>
+            <nav>
+              <div className="navbarContainer">
+
+                <Link to="/">
+                  <span>Home</span>
+                </Link>
+                <span> | </span>
+                <Link to="/products">
+                  <span>Products</span>
+                </Link>
+
+              </div>
+            </nav>
+          </header>
+
+          <section className="content">
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/products" component={Products} />
+            </Switch>
+          </section>
+        </div>
+      </Router>
+
     );
   }
 }

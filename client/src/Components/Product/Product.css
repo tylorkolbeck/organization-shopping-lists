@@ -1,0 +1,35 @@
+.Product__container {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    font-family: 'Helvetica Neue',Helvetica,Arial,Roboto,sans-serif;
+    justify-content: center;
+
+}
+
+.Product {
+    /* background: dodgerblue; */
+    /* border: 1px solid lightblue; */
+    width: 250px;
+    align-items: center;
+    margin: 12px;
+}
+
+.Product img {
+    width: 250px;
+    height: auto;
+    display: block;
+    /* margin: auto; */
+    /* padding: 10px; */
+}
+
+.Product__container h2 {
+    color: #0060a9;
+    font-size: 1.5rem;
+    margin: 12px 6px;
+}
+
+.Product__container P {
+    font-size: 16px;
+    margin: 12px 6px;
+}
