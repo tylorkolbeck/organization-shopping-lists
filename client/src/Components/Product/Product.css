@@ -7,8 +7,6 @@
 }
 
 .Product {
-    /* background: dodgerblue; */
-    /* border: 1px solid lightblue; */
     width: 250px;
     align-items: center;
     margin: 12px;
@@ -20,8 +18,6 @@
     width: 250px;
     height: auto;
     display: block;
-    /* margin: auto; */
-    /* padding: 10px; */
 }
 
 .Product__container h2 {

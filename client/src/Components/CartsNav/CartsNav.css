@@ -1,0 +1,22 @@
+.CartsNav__container {
+    width: 100%;
+    background: dodgerblue;
+}
+
+.CartsNav__container ul {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background: dodgerblue;
+    height: 50px;
+}
+
+.CartsNav__container li {
+    text-decoration: none;
+    float: left;
+    padding: 5px;
+}
