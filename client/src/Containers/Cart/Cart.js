@@ -34,7 +34,12 @@ class Cart extends Component {
                 <div>
                     <p><b>Cart Name: </b>{this.state.cartName}</p>
                     <p><b>Cart Id: </b>{this.state.cart}</p>
-                    <b>Items:</b> {this.state.items.map(item => (<p key={item.productId}>{item.productId} - {item.quantity}</p>))}
+                    <b>Items:</b> {this.state.items.map(item => (
+                        <div key={item.product._id}>
+                            <p>{item.product.product} - {item.inCart}</p>
+                        </div>
+
+                    ))}
                 </div>
                 
             )
