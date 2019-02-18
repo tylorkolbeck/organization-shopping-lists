@@ -8,6 +8,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import CartsNav from '../../Components/CartsNav/CartsNav'
 
+
 class shoppingLists extends Component {
     state = {
         carts: false,
@@ -27,10 +28,6 @@ class shoppingLists extends Component {
         }
     }
 
-    gotToCart() {
-
-    }
-
     render() {
         let cartLinks = <li>Loading Carts...</li>
 
@@ -39,7 +36,6 @@ class shoppingLists extends Component {
                 return (
                     <div key={cart.id}>
                         <CartsNav 
-                            
                             name={cart.name}
                             id={cart.id}
                             location={this.props.location}
@@ -59,5 +55,7 @@ class shoppingLists extends Component {
         )
     }
 }
+
+
 
 export default shoppingLists

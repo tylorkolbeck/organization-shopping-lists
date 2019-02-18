@@ -1,37 +1,70 @@
 import React, { Component } from 'react'
 import './CartsNav.css'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 class CartsNav extends Component {
     state = {
-        active: false
+        active: false,
+        activeCarts: this.props.activeCarts,
+        loading: true
     }
 
-    activeCartHandler() {
-        let currentState = !this.state.active
-        this.setState({active: currentState}, async () => {
-            try {
-                await console.log(this.props.name, this.state.active)
-            } catch(error) {
-                console.log(error)
-            }
-            
-        })
-        
+    componentDidMount() {
+        this.setState({loading: false})
+        this.checkIfActive()
+    }
 
+    componentDidUpdate() {
+        if (!this.state.loading) {
+            if (this.state.activeCarts !== this.props.activeCarts) {
+                this.setState({activeCarts: this.props.activeCarts})
+                this.checkIfActive()
+            }
+        }
+    }
+
+    checkIfActive() {
+        /*
+            if the component state has the activeCarts array from 
+            redux then determine if the active state needs to be checked or not for 
+            this instanve of the cartList component.
+        */
+        if (this.props.activeCarts) {
+            if (this.props.activeCarts.includes(this.props.id)) {
+                this.setState({active: true})
+            } else {
+                this.setState({active: false})
+            }
+        }
+        
+        
     }
 
     render() {
         return (
             <div className="CartsNav__container" >
                 <li key={this.props.id}>
-                    <div className={`CartsNav__active_list ${this.state.active === true ? "CartNav__active_cart" : ""}`} onClick={this.activeCartHandler.bind(this)}></div>
+                    <div 
+                        className={`CartsNav__active_list ${this.state.active === true ? "CartNav__active_cart" : ""}`} 
+                        onClick={() => this.props.toggleActiveHandler(this.props.id)}></div>
                     <Link to={`/shoppingLists/${this.props.id}`}>{this.props.name}</Link>
                 </li>
              </div>
         )
     }
-    
 }
 
-export default CartsNav
+const mapStateToProps = state => {
+    return {
+        activeCarts: state.activeCarts,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        toggleActiveHandler: (cartId) => dispatch({type: "TOGGLE_ACTIVE_CART", cartId: cartId})
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartsNav)

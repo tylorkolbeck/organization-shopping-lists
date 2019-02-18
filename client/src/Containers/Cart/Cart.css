@@ -1,9 +1,10 @@
 .Cart__container {
     /* background: yellow; */
-    margin: 8px;
     border: 1px solid grey;
     box-sizing: border-box;
     border-radius: 3px;
+    max-width: 900px;
+    margin: auto;
 }
 
 .Cart__cart_name {
@@ -22,4 +23,10 @@
 
 .Cart__final_total {
     text-align: right;
+}
+
+@media(max-width: 900px) {
+    .Cart__container {
+        margin: 8px;
+    }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import Product from '../../Components/Product/Product'
+// import Product from '../../Components/Product/Product'
 import CartItem from '../../Components/CartItem/CartItem'
 import './Cart.css'
 
