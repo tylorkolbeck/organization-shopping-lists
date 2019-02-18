@@ -36,6 +36,11 @@ const Cart = asyncComponent(() =>
 const history = createBrowserHistory()
 
 class App extends Component {
+
+  state = {
+    activeCarts: []
+  }
+
   render() {
     return (
       <Router history={history}>

@@ -11,7 +11,8 @@ import CartsNav from '../../Components/CartsNav/CartsNav'
 class shoppingLists extends Component {
     state = {
         carts: false,
-        loading: false
+        loading: false,
+        activeCarts: []
     }
 
     componentDidMount() {
@@ -36,12 +37,14 @@ class shoppingLists extends Component {
         if (this.state.carts) {
             cartLinks = this.state.carts.map(cart => {
                 return (
-                    <CartsNav 
-                        key={cart.id}
-                        name={cart.name}
-                        id={cart.id}
-                        location={this.props.location}
-                    />
+                    <div key={cart.id}>
+                        <CartsNav 
+                            
+                            name={cart.name}
+                            id={cart.id}
+                            location={this.props.location}
+                        />
+                    </div>                    
                 )
             })
         }

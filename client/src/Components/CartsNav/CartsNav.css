@@ -13,10 +13,30 @@
     padding: 0;
     background: dodgerblue;
     height: 50px;
+    padding-top: 5px;
 }
 
 .CartsNav__container li {
     text-decoration: none;
     float: left;
     padding: 5px;
+    display: inline-block;
+}
+
+.CartsNav__container a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.CartsNav__active_list {
+    height: 1.1rem;
+    width: 1.1rem;
+    border: 1px solid white;
+    display: inline-block;
+    margin-right: 3px;
+}
+
+.CartNav__active_cart {
+    background: white;
 }
