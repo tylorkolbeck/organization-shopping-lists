@@ -33,10 +33,10 @@ const Cart = asyncComponent(() =>
     .then(module => module.default)
 )
 
+
 const history = createBrowserHistory()
 
 class App extends Component {
-
   state = {
     activeCarts: []
   }
