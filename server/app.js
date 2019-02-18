@@ -1,13 +1,14 @@
 require('dotenv').config()
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+let express = require('express');
+let path = require('path');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var productsRouter = require('./routes/products');
+let indexRouter = require('./routes/index');
+let productsRouter = require('./routes/products');
+let shoppingListRouter = require('./routes/shoppingList')
 
-var app = express();
+let app = express();
 
 // MONGOOSE SETUP
 let mongoose = require('mongoose')
@@ -36,5 +37,6 @@ app.use((req, res, next) => {
 // Routes
 app.use('/', indexRouter);
 app.use('/products', productsRouter);
+app.use('/shoppingLists', shoppingListRouter);
 
 module.exports = app;
