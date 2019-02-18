@@ -6,7 +6,7 @@ import './Product.css'
 
 class Product extends Component {
   state = {
-    quantity: 1,
+    quantity: this.props.inCart ? this.props.inCart : 1,
     addedToCart: false
   }
 
@@ -35,6 +35,7 @@ class Product extends Component {
         decrementQuantity={this.decrementQuantity.bind(this)}
         incrementQuantity={this.incrementQuantity.bind(this)}
         quantity={this.state.quantity}
+        buttonWord="Add"
       />
 
       </div>

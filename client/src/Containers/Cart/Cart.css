@@ -1,0 +1,25 @@
+.Cart__container {
+    /* background: yellow; */
+    margin: 8px;
+    border: 1px solid grey;
+    box-sizing: border-box;
+    border-radius: 3px;
+}
+
+.Cart__cart_name {
+    text-align: center;
+    border-bottom: 1px solid grey;
+    padding: 10px;
+    border-radius: 3px;
+    margin: 0px;
+    background: rgb(231, 231, 231);
+}
+
+.Cart__total_price {
+    color: #c00;
+    font-size: 1.2rem;
+}
+
+.Cart__final_total {
+    text-align: right;
+}

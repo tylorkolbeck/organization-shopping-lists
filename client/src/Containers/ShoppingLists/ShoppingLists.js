@@ -1,3 +1,9 @@
+/*
+This gets the names of all the current shopping lists from 
+the carts collection in the database. All the names are put into 
+a CartsNav component to make a shopping lists navigation.
+*/
+
 import React, { Component } from 'react'
 import axios from 'axios'
 import CartsNav from '../../Components/CartsNav/CartsNav'

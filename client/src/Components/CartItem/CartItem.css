@@ -1,0 +1,35 @@
+.CartItem__container {
+    /* background: green; */
+    display: flex;
+    padding: 8px;
+    border-bottom: 1px solid grey;
+}
+
+.CartItem__container img {
+    max-height: 200px;
+}
+
+.CartItem__img_button {
+    display: flex;
+    flex-direction: column;
+    /* width: 300px; */
+    /* background: red; */
+}
+
+.CartItem__product_info {
+    width: 100%;
+    /* background: yellow; */
+    text-align: right;
+}
+
+.CartItem__product_info h3 {
+    color: #c00;
+    font-size: 1.3em;
+}
+
+h2 {
+    color: #0060a9;
+    font-size: 1.5rem;
+    margin: 12px 6px;
+}
+
