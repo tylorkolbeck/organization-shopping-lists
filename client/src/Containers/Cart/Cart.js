@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 // import Product from '../../Components/Product/Product'
 import CartItem from '../../Components/CartItem/CartItem'
-
+import { formatMoney } from 'accounting-js'
 import './Cart.css'
 
 
@@ -113,9 +113,9 @@ class Cart extends Component {
         
         return (
             <div className="Cart__container">
-                <h2 className="Cart__cart_name">{this.state.cartName} - <span className="Cart__total_price">{this.state.totalPrice} </span></h2>
+                <h2 className="Cart__cart_name">{this.state.cartName} - <span className="Cart__total_price">{formatMoney(this.state.totalPrice)} </span></h2>
                 {products}
-                <h2 className="Cart__final_total">Total - <span className="Cart__total_price">{this.state.totalPrice} </span></h2>
+                <h2 className="Cart__final_total">Total - <span className="Cart__total_price">{formatMoney(this.state.totalPrice)} </span></h2>
             </div>
         )
     }
