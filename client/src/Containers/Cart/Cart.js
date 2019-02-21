@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import axios from 'axios'
 // import Product from '../../Components/Product/Product'
 import CartItem from '../../Components/CartItem/CartItem'
+
 import './Cart.css'
+
 
 
 class Cart extends Component {
@@ -38,12 +40,27 @@ class Cart extends Component {
     }
 
     getTotalPrice() {
-        // console.log(this.state.items)
         let totalPrice = 0
         this.state.items.forEach((item) => {
             totalPrice += item.product.price * item.inCart      
         })
         this.setState({totalPrice})
+    }
+
+    removeItemFromCartHandler(id) {
+
+        axios.delete(process.env.REACT_APP_MONGODB + '/shoppingLists/delete/', 
+        { data: 
+            { 
+                cartId:  this.state.cart,
+                productId: id
+            }
+        })
+
+        // Do this after confirmed that it was removed from the cart
+        let oldItems = {...this.state.items}
+        oldItems = this.state.items.filter((item) => item.product._id !== id)
+        this.setState({items: oldItems})
     }
 
     render() {
@@ -63,6 +80,8 @@ class Cart extends Component {
                             price={item.product.price}
                             imgUrl={item.product.imgUrl}
                             inCart={item.inCart}
+                            cartId={this.state.cart}
+                            removeItem={this.removeItemFromCartHandler.bind(this)}
                         />
                     </div>
                 ))
@@ -72,7 +91,6 @@ class Cart extends Component {
         return (
             <div className="Cart__container">
                 <h2 className="Cart__cart_name">{this.state.cartName} - <span className="Cart__total_price">{this.state.totalPrice} </span></h2>
-                {/* {cartInfo} */}
                 {products}
                 <h2 className="Cart__final_total">Total - <span className="Cart__total_price">{this.state.totalPrice} </span></h2>
             </div>

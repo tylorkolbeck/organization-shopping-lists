@@ -1,5 +1,6 @@
-ShoppingList = require('../models/ShoppingList')
-Products = require('../models/Product')
+let ShoppingList = require('../models/ShoppingList')
+let Products = require('../models/Product')
+let ObjectId = require('mongoose').Types.ObjectId;
 
 exports.shoppingListGetAll = (req, res, next) => {
     ShoppingList.find()
@@ -109,8 +110,7 @@ exports.getShoppingList = (req, res, next) => {
                         cart: cartResult,
                         
                     })
-                    // console.log('------------------------')
-                    console.log(cartResult)
+
                 })
                 .catch(err => {
                     res.status(500).json({
@@ -119,4 +119,63 @@ exports.getShoppingList = (req, res, next) => {
                     })
                 })
         })
+}
+
+exports.addToShoppingList = (req, res, next) => {
+
+    let activeCarts = req.body.activeCarts[0]
+    let productId = req.body.productInfo.productId
+    let quantity = req.body.productInfo.quantity
+    let productInfo = req.body.productInfo
+
+    ShoppingList.updateOne(
+        { 
+            '_id': activeCarts, 
+            'items.productId': productId
+        },
+        {
+            '$inc': {'items.$.quantity':quantity},
+        },
+        (error, result) => {
+            if (error) {
+                console.log('ERROR on increment',error)
+            }
+            if (result.nModified === 0) {
+                ShoppingList.updateOne({_id: activeCarts}, {$push: {items: productInfo}}, (error, result) => {
+                    if (error) {
+                        console.log('ERROR on Upsert',error)
+                    }
+                    if (result) {
+                        console.log("added to the cart")
+                    }
+
+                })
+            } else {
+                res.status(200).json({
+                    message: 'Item was successfully added to the cart!'
+                })
+            }
+        }
+
+    )
+}
+
+exports.removeItemFromCart = (req, res, next) => {
+    // console.log('DATA TO WORK WITH', req.body)
+    ShoppingList.updateOne(
+        {_id: req.body.cartId},
+        {$pull: {'items': {'productId': req.body.productId}}}, (error, result) => {
+            if (error) {
+                res.status(500).json({
+                    message: 'There was an error removing the item from the database.'
+                })
+                console.log(error)
+
+            } else {
+                res.status(200).json({
+                    message: 'Item removed from the cart'
+                })
+            }
+        }    
+    )
 }

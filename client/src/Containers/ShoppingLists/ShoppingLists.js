@@ -17,8 +17,6 @@ class shoppingLists extends Component {
     }
 
     componentDidMount() {
-        console.log('LIST COMPONENT')
-        console.log(this.props)
         if (!this.state.products) {
             this.setState({loading: true})
             axios.get(process.env.REACT_APP_MONGODB + '/shoppingLists/cartNames')

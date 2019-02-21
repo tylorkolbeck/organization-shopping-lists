@@ -2,7 +2,6 @@
     display: flex;
     margin-top: auto;
     width: 100%;
-    /* background: red; */
 }
 
 .cartButtons__cart_button {
@@ -36,7 +35,10 @@
 
 .cartButtons__cart_add:hover {
     cursor: pointer;
+    background: white;
+    color: #2a6293;
 }
+
 
 .cartButtons__number_input {
     width: 50px;
@@ -45,10 +47,11 @@
     font-size: 16px;
     outline: none;
     text-align: center;
-    /* margin-top: auto; */
-    /* background: #eee; */
     border: 0px;
     font-size: 1rem;
     color: #333;
-    /* border-color:#9c9c9c; */
+}
+
+.cartButtons__unsaved {
+    background: #c00;
 }

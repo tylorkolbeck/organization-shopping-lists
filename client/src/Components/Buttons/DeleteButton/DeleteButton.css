@@ -1,0 +1,17 @@
+.DeleteButton__container {
+    display: inline-block;
+    padding: 0px 10px;
+    line-height: 50px;
+    /* margin-top: auto; */
+    height: 50px;
+    border: 1px solid grey;
+    border-radius: 3px;
+    background: #c00;
+    color: white;
+}
+
+.DeleteButton__container:hover {
+    cursor: pointer;
+    background: white;
+    color: #c00;
+}

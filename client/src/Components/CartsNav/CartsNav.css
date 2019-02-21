@@ -1,6 +1,6 @@
 .CartsNav__container {
     width: 100%;
-    background: dodgerblue;
+    background: #2a6293;
 }
 
 .CartsNav__container ul {
@@ -11,7 +11,7 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    background: dodgerblue;
+    background: #2a6293;
     height: 50px;
     padding-top: 5px;
 }

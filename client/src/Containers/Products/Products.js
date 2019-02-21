@@ -14,7 +14,7 @@ class Products extends Component {
                 .then((response) => {
                     this.setState({products: response.data.products})
                     this.setState({loading: false})
-                    console.log(this.state.products)
+                    // console.log(this.state.products)
                 })
         }
     }

@@ -5,7 +5,8 @@ const shoppingListController = require('../src/controllers/shoppingListControlle
 /* GET products listing. */
 router.get('/', shoppingListController.shoppingListGetAll);
 router.get('/cartNames', shoppingListController.shoppingListGetListNames);
-router.get("/:cartId", shoppingListController.getShoppingList)
-
+router.patch('/addToCart', shoppingListController.addToShoppingList)
+router.delete('/delete', shoppingListController.removeItemFromCart)
+router.get('/:cartId', shoppingListController.getShoppingList)
 
 module.exports = router;

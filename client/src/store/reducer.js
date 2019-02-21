@@ -1,6 +1,10 @@
+/*
+ @Array - activeCarts - an array containg which carts are active for adding items to. 
+*/
+
 const initialState = {
-    activeCarts: ['5c665676f703330bccf0bf47', '5c66585ce520a80bcca2ae2c'],
-    counter: 0
+    activeCarts: [],
+    // TODO: Add user functionality to lock the app down
 }
 
 const reducer = (state = initialState, action) => {
@@ -21,6 +25,7 @@ const reducer = (state = initialState, action) => {
                     activeCarts: [...state.activeCarts, action.cartId]
                 }
             }
+            console.log('[ACTIVE CART/s]', state.activeCarts)
             break
         case "SOMETHING_ELSE":
             console.log('SOMETHINGELSE')
@@ -28,42 +33,7 @@ const reducer = (state = initialState, action) => {
         default:
             return state
     }
-    // console.log(state)
+
     return state
 }
-        // if (state.activeCarts.includes(action.cartId)) {
-        //     let newActiveCarts = state.activeCarts.slice()
-        //     let index = newActiveCarts.indexOf(action.cartId)
-        //     newActiveCarts.splice(index, 1)
-
-        //     // newActiveCarts = state.activeCarts.filter((value) => {
-        //     //     return value !== action.cartId
-        //     // })
-        //     console.log(newActiveCarts)
-        //     return {
-        //         ...state,
-        //         activeCarts: newActiveCarts
-        //     }
-        //} else {
-        //     newActiveCarts = [...state.activeCarts, action.cartId]
-        //     console.log(state.activeCarts)
-        //     return {
-        //         ...state,
-        //         activeCarts: newActiveCarts
-        //     }
-        // }
-    // }
-    // return state
-
-
 export default reducer
-
-
-// let currentState = !this.state.active
-//         this.setState({active: currentState}, async () => {
-//             try {
-//                 await console.log(this.props.name, this.state.active)
-//             } catch(error) {
-//                 console.log(error)
-//             }
-//         })
