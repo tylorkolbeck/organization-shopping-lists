@@ -4,7 +4,7 @@ import './DeleteButton.css'
 const DeleteButton = (props) => {
     return (
         <div className="DeleteButton__container" onClick={props.removeItem}>
-            <div>Remove</div>
+            <div>x</div>
         </div>
     )
 }
