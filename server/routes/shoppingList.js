@@ -7,6 +7,7 @@ router.get('/', shoppingListController.shoppingListGetAll);
 router.get('/cartNames', shoppingListController.shoppingListGetListNames);
 router.patch('/addToCart', shoppingListController.addToShoppingList)
 router.delete('/delete', shoppingListController.removeItemFromCart)
+router.patch('/updateQuantity', shoppingListController.updateQuantityInCart)
 router.get('/:cartId', shoppingListController.getShoppingList)
 
 module.exports = router;

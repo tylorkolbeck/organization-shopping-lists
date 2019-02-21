@@ -48,7 +48,6 @@ class Cart extends Component {
     }
 
     removeItemFromCartHandler(id) {
-
         axios.delete(process.env.REACT_APP_MONGODB + '/shoppingLists/delete/', 
         { data: 
             { 
@@ -63,6 +62,27 @@ class Cart extends Component {
         this.setState({items: oldItems})
     }
 
+    updateQuantityInCartaHandler(cart, product, inCart) {
+        axios.patch(process.env.REACT_APP_MONGODB + '/shoppingLists/updateQuantity', {
+            data: {
+                cartId: cart,
+                productId: product,
+                quantity: inCart
+            }
+        })
+        let oldItems = this.state.items.filter((item) => item.product._id !== product)
+        // console.log(oldItems)
+        let itemToUpdate = this.state.items.find(item => item.product._id === product)
+        // console.log(itemToUpdate)
+        itemToUpdate.inCart = inCart
+        // console.log(itemToUpdate)
+        oldItems = {...oldItems, ...itemToUpdate}
+        console.log(oldItems)
+
+        this.getTotalPrice()
+
+    }
+
     render() {
         let products = null
         if (this.state.loading) {
@@ -74,6 +94,7 @@ class Cart extends Component {
             products = (
                 this.state.items.map(item => (
                     <div key={item.product._id}>
+
                         <CartItem 
                             id={item.product._id}
                             name={item.product.product}
@@ -82,7 +103,9 @@ class Cart extends Component {
                             inCart={item.inCart}
                             cartId={this.state.cart}
                             removeItem={this.removeItemFromCartHandler.bind(this)}
+                            updateQuantity={this.updateQuantityInCartaHandler.bind(this)}
                         />
+
                     </div>
                 ))
             )

@@ -179,3 +179,21 @@ exports.removeItemFromCart = (req, res, next) => {
         }    
     )
 }
+
+exports.updateQuantityInCart = (req, res, next) => {
+    // let productId = req.body.productId.toString()
+    console.log('PRODUCT ID ', req.body.data.inCart)
+    ShoppingList.updateOne(
+        { '_id': req.body.data.cartId, 'items.productId': req.body.data.productId}, {'$set': {'items.$.quantity': req.body.data.quantity}}, (error, result) => {
+            if (!error) {
+                res.status(200).json({
+                    message: 'Product Updated!'
+                })
+            } else {
+                res.status(500).json({
+                    message: 'There was an error updating the product in the cart.'
+                })
+            }
+        }
+    )
+}
