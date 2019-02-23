@@ -1,0 +1,52 @@
+.Carts__container {
+    padding: 16px;
+}
+
+.Carts__carts_table {
+    width: 600px;
+    margin: auto;
+    border: 1px solid grey;
+}
+
+.Carts__carts_table th {
+    border-bottom: 1px solid grey;
+    text-align: left;
+    padding: 10px;
+}
+
+.Carts__carts_table td {
+    padding: 10px;
+}
+
+.Carts__trash_can {
+    height: 20px;
+}
+
+.Carts__trash_can:hover{
+    cursor: pointer;
+}
+
+.Carts__new_cart input {
+    border: 0px;
+    border-bottom: 1px solid grey;
+    padding: 8px;
+    padding-left: 0px;
+    font-size: 1em;
+}
+
+.Carts__add_icon {
+    height: 20px;
+}
+
+@media (max-width: 440px) {
+    .Carts__carts_table {
+        /* background: red; */
+        width: 100%;
+    }
+
+    .Carts__carts_table th {
+        border-bottom: 1px solid grey;
+        text-align: left;
+        padding: 5px;
+    }
+}

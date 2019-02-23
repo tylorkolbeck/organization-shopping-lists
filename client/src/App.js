@@ -16,6 +16,7 @@ import asyncComponent from '../src/utilities/AsyncComponent'
 
 // Containers
 import ShoppingLists from '../src/Containers/ShoppingLists/ShoppingLists'
+import Carts from '../src/Containers/Carts/Carts'
 
 // IMPORT FOR LAZY LOADING
 const Products = asyncComponent(() => 
@@ -53,21 +54,16 @@ class App extends Component {
                       <span>Products</span>
                   </Link>
                    
-                  <Link to="/products">
+                  <Link to="/carts">
                       <span>Carts</span>
                   </Link>
                    
                   <Link to="/products">
                       <span>Login</span>
                   </Link>
-
                 </div>
                 
                 <ShoppingLists />
-                {/* <Link to="/">
-                  <span>Home</span>
-                </Link> */}
-                {/* <span> | </span> */}
                 
               </div>
             </nav>
@@ -78,6 +74,7 @@ class App extends Component {
               <Route exact path="/" component={Home} />
               <Route path="/products" component={Products} />
               {/* <Route path="/shoppingLists/:cartId" component={Cart} /> */}
+              <Route path="/carts" component={Carts} />
               <Route path="/shoppingLists/:cartId" render={(props) => (
                 <Cart key={props.match.params.cartId} {...props}/>
               )} />
