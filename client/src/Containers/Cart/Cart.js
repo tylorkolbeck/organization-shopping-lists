@@ -66,6 +66,10 @@ class Cart extends Component {
                 productId: id
             }
         })
+        .then(()=> {
+            this.getTotalPrice()
+        })
+        
 
         // Do this after confirmed that it was removed from the cart
         let oldItems = {...this.state.items}
