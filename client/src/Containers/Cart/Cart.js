@@ -33,7 +33,8 @@ class Cart extends Component {
                 } else if (!response.data.itemsInCart) {
                     this.setState({
                         loading: false,
-                        itemsInCart: false
+                        itemsInCart: false,
+                        cartName: response.data.cart.cartName
                     },
                     () => {
                         console.log(this.state.itemsInCart)

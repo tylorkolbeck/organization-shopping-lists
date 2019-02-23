@@ -50,6 +50,7 @@ exports.getShoppingList = (req, res, next) => {
 
     // Find all items in the product database that match the id of each item in the cart
     ShoppingList.findById(cartId, (error, results) => {
+        if (results) {
             if (results.items.length > 0) {
                 res.status(200)
 
@@ -115,10 +116,12 @@ exports.getShoppingList = (req, res, next) => {
                 res.status(200).json({
                     message: 'No items in cart.',
                     itemsInCart: false,
+                    cart: results
 
                 })
             }
-        })
+        }
+    })
         
         // .exec((err, results) => {
         //     let cartResult = results

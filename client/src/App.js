@@ -48,14 +48,27 @@ class App extends Component {
           <header>
             <nav>
               <div className="navbarContainer">
+                <div className="App__links">
+                  <Link to="/products">
+                      <span>Products</span>
+                  </Link>
+                   
+                  <Link to="/products">
+                      <span>Carts</span>
+                  </Link>
+                   
+                  <Link to="/products">
+                      <span>Login</span>
+                  </Link>
+
+                </div>
+                
                 <ShoppingLists />
-                <Link to="/">
+                {/* <Link to="/">
                   <span>Home</span>
-                </Link>
-                <span> | </span>
-                <Link to="/products">
-                  <span>Products</span>
-                </Link>
+                </Link> */}
+                {/* <span> | </span> */}
+                
               </div>
             </nav>
           </header>

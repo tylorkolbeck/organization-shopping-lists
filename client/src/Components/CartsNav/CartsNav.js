@@ -43,7 +43,7 @@ class CartsNav extends Component {
 
     render() {
         return (
-            <div className="CartsNav__container" >
+            <div>
                 <li key={this.props.id}>
                     <div 
                         className={`CartsNav__active_list ${this.state.active === true ? "CartNav__active_cart" : ""}`} 

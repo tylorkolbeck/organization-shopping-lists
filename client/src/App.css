@@ -2,10 +2,23 @@
   box-sizing: border-box;
 }
 
-.content {
-    margin-top: 50px;
-}
 
-nav {
-    margin-top: 50px;
+/* .navbarContainer a {
+    color: #2a6293;
+    text-decoration: none;
+} */
+
+.App__links {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: #2a6293;
+    text-align: right;
+    box-shadow: 1px 1px 10px 1px grey;
+    
+}
+.App__links a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 5px;
+    font-size: 1.2em;
 }

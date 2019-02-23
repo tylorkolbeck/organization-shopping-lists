@@ -7,6 +7,9 @@ a CartsNav component to make a shopping lists navigation.
 import React, { Component } from 'react'
 import axios from 'axios'
 import CartsNav from '../../Components/CartsNav/CartsNav'
+// import { Link } from 'react-router-dom'
+
+import './ShoppingLists.css'
 
 
 class shoppingLists extends Component {
@@ -27,7 +30,7 @@ class shoppingLists extends Component {
     }
 
     render() {
-        let cartLinks = <li>Loading Carts...</li>
+        let cartLinks = null
 
         if (this.state.carts) {
             cartLinks = this.state.carts.map(cart => {
@@ -42,20 +45,37 @@ class shoppingLists extends Component {
                 )
             })
         }
+        
+        // TODO:
+        // if (this.state.carts) {
+        //     cartLinks = 
+        //     this.state.carts.map(cart => {
+        //         return (
+        //             <option value={cart.id} key={cart.id}>{cart.name}</option>                
+        //         )
+        //     })
+        // }
 
         return (
+            // TODO:
+            // <div className="CartsNav__container">
+                // <div className="styled" onChange={console.log(this.state.activeCarts)}>
+                //     <select>
+                //             {cartLinks}
+                //     </select>
+                // </div>
+            // </div>
+
             <div className="CartsNav__container">
                 <ul>
                     {cartLinks}
-
-
-                    <div className="custom-select">
-                        <select>
-                        </select>
-                    </div>
-
+                    {/* <li className="ShoppingLists__edit_carts">
+                        <Link to={`/editCarts`}>Edit Carts</Link>
+                        <Link to={`/editCarts`}>Edit Carts</Link>
+                    </li> */}
                 </ul>
-                
+
+
             </div>
         )
     }
