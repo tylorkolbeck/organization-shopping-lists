@@ -122,70 +122,6 @@ exports.getShoppingList = (req, res, next) => {
             }
         }
     })
-        
-        // .exec((err, results) => {
-        //     let cartResult = results
-        //     let ids = results.items.map((el)=>{
-        //         return el.productId})
-
-        //     Products.find({"_id": {"$in": ids}}, (err, databaseItems) => {
-        //         if (err) {
-        //             console.log('ERRORERROR')
-        //         }
-                
-        //         // Once all the products are found add that product info to the cart item 
-        //         try {
-        //             let findProductInDatabase = (cartProductId) => {
-        //                 let foundProduct;
-        //                 try {
-        //                     if (cartProductId) {
-        //                         cartProductId = cartProductId.toString()
-        //                         foundProduct = databaseItems.find((pro) => pro._id == cartProductId)
-        //                     } else {
-        //                         return 'A product id was not given.'
-        //                     }
-        //                     if (foundProduct) return foundProduct
-        //                     else if (!foundProduct) return `That product was not found in the database with the given ID ${cartProductId}`
-        
-        //                     return foundProduct
-        //                 } catch(err) {
-        //                     foundProduct = 'An error has occured.'
-        //                     return foundProduct
-        //                 } 
-        //             }
-
-        //             mergeProductInfo = (cartItems) => {
-        //             let newCartProducts = []
-        //                 for (let i = 0; i < cartItems.length; i++) {
-        //                     let productObj = {}
-        //                     // assign product info to product
-        //                     productObj.product = findProductInDatabase(cartResult.items[i].productId)
-        //                     productObj.inCart = cartResult.items[i].quantity
-        //                     newCartProducts.push(productObj)                    
-        //                 }
-        //                 // replace current cartItems with new cart items that hold the productinfo
-        //                 cartResult.items = newCartProducts
-        //             }
-        //             mergeProductInfo(cartResult.items)
-        //         } catch(err) {
-        //             return err
-        //         }
-        //      })
-        //         .then(() => {
-        //             res.status(200).json({
-        //                 message: 'Found cart',
-        //                 cart: cartResult,
-                        
-        //             })
-        //         })
-        //         .catch(err => {
-        //             res.status(500).json({
-        //                 error: err,
-        //                 message: 'Something went wrong'
-        //             })
-        //         })
-        // }) // end exec
-
 }
 
 exports.addToShoppingList = (req, res, next) => {
@@ -263,4 +199,18 @@ exports.updateQuantityInCart = (req, res, next) => {
             }
         }
     )
+}
+
+exports.addCart = (req, res, next) => {
+    ShoppingList.create({_id: new ObjectId(), cartName: req.cartname}, (error, result) => {
+        if (!error) {
+            res.status(200).json({
+                message: "ADDED NEW CART "
+            })
+        } else {
+            res.status(500).json({
+                error: error
+            })
+        }
+    })
 }

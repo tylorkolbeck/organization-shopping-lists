@@ -31,12 +31,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "http://localhost:3000")
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-    res.header("Access-Control-Allow-Methods", "PATCH, GET, DELETE")
+    res.header("Access-Control-Allow-Methods", "PATCH, GET, DELETE, POST")
 
     if (req.method === 'OPTIONS') {
         res.header("Access-Control-Allow-Origin", "http://localhost:3000")
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-        res.header("Access-Control-Allow-Methods", "PATCH, GET, DELETE")
+        res.header("Access-Control-Allow-Methods", "PATCH, GET, DELETE, POST")
     }
 
     next()

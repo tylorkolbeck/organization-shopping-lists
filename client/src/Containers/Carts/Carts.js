@@ -22,9 +22,6 @@ class Carts extends Component {
         
     }
 
-   
-
-
     render() {
 
         let cartData = null
