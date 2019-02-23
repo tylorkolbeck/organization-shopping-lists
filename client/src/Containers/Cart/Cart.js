@@ -22,12 +22,23 @@ class Cart extends Component {
         this.setState({loading: true})
         axios.get(process.env.REACT_APP_MONGODB + '/shoppingLists/' + this.props.match.params.cartId)
             .then(response => {
-                this.setState({
-                    cart: response.data.cart._id, 
-                    items: response.data.cart.items, 
-                    cartName: response.data.cart.cartName,
-                    loading: false
-                })
+                if (response.data.itemsInCart) {
+                    this.setState({
+                        cart: response.data.cart._id, 
+                        items: response.data.cart.items, 
+                        cartName: response.data.cart.cartName,
+                        itemsInCart: true,
+                        loading: false
+                    })
+                } else if (!response.data.itemsInCart) {
+                    this.setState({
+                        loading: false,
+                        itemsInCart: false
+                    },
+                    () => {
+                        console.log(this.state.itemsInCart)
+                    })
+                }
             })
             .then(() => {
                 this.getTotalPrice()
@@ -59,7 +70,11 @@ class Cart extends Component {
         // Do this after confirmed that it was removed from the cart
         let oldItems = {...this.state.items}
         oldItems = this.state.items.filter((item) => item.product._id !== id)
-        this.setState({items: oldItems})
+
+        this.setState({
+            items: oldItems,
+            // itemsInCart: this.state.items.length == 0 ? false : true
+        })
     }
 
     updateQuantityInCartaHandler(cart, product, inCart) {
@@ -105,9 +120,15 @@ class Cart extends Component {
                             removeItem={this.removeItemFromCartHandler.bind(this)}
                             updateQuantity={this.updateQuantityInCartaHandler.bind(this)}
                         />
-
                     </div>
                 ))
+            )
+        } 
+        else if (!this.state.itemsInCart) {
+            products = (
+                <div>
+                    <p>No items in this cart.</p>
+                </div>
             )
         }
         
