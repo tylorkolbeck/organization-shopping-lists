@@ -51,7 +51,7 @@ exports.getShoppingList = (req, res, next) => {
     // Find all items in the product database that match the id of each item in the cart
     ShoppingList.findById(cartId, (error, results) => {
         if (results) {
-            if (results.items.length > 0) {
+            if (results.items) {
                 res.status(200)
 
                 let cartResult = results
@@ -202,7 +202,7 @@ exports.updateQuantityInCart = (req, res, next) => {
 }
 
 exports.addCart = (req, res, next) => {
-    ShoppingList.create({_id: new ObjectId(), cartName: req.cartname}, (error, result) => {
+    ShoppingList.create({_id: new ObjectId(), cartName: req.body.cartName}, (error, result) => {
         if (!error) {
             res.status(200).json({
                 message: "ADDED NEW CART "

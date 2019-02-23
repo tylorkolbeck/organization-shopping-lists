@@ -7,7 +7,8 @@ import AddIcon from '../../assets/images/add_icon.ico'
 
 class Carts extends Component {
     state = {
-        carts: false
+        carts: false,
+        newCartName: false
     }
 
     componentDidMount() {
@@ -19,7 +20,12 @@ class Carts extends Component {
                     })
                 })
         }
-        
+    }
+
+    addCartToDatabase() {
+        axios.post(process.env.REACT_APP_MONGODB + '/shoppingLists/addCart', {
+            cartName: this.state.newCartName
+        })
     }
 
     render() {
@@ -31,7 +37,7 @@ class Carts extends Component {
                 return (
                     <tr key={cart._id}>
                         <td>{cart.cartName}</td>
-                        <td>{cart.items.length}</td>
+                        <td>{cart.items ? cart.items.length : 0}</td>
                         <td>$0.00</td>
                         <td><img src={TrashCan} alt="trahscan" className="Carts__trash_can"></img></td>
                     </tr>
@@ -57,11 +63,11 @@ class Carts extends Component {
                         {cartData}
                         <tr>
                             <td className="Carts__new_cart">
-                                <input type="text" placeholder="New Cart"></input>
+                                <input type="text" placeholder="New Cart" onChange={(e) => this.setState({newCartName: e.target.value})}></input>
                             </td>
                             <td>-</td>
                             <td>-</td>
-                            <td>{<img src={AddIcon} alt="Add" className="Carts__add_icon"></img>}</td>
+                            <td>{<img src={AddIcon} alt="Add" className="Carts__add_icon" onClick={() => this.addCartToDatabase()}></img>}</td>
                         </tr>
                     </tbody>
                 </table>
