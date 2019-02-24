@@ -45,7 +45,7 @@ exports.addProduct = (req, res, next) => {
         sellingPrice: req.body.sellingPrice,
         imgUrl: req.body.imgUrl.length === 0 ? 
             'https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjM0O6rx9PgAhXorFQKHThgCtUQjRx6BAgBEAU&url=https%3A%2F%2Fwww.vexels.com%2Fpng-svg%2Fpreview%2F152579%2Forange-circle-question-mark-icon&psig=AOvVaw1QsmWyGpayGx781ZNZfL2S&ust=1551069777545731' : 
-            req.body.imgUrl.length
+            req.body.imgUrl
     }, (error, result) => {
         if (error) {
             res.status(500).json({

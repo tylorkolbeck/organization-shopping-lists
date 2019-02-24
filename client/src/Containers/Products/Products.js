@@ -56,10 +56,11 @@ class Products extends Component {
         axios.post(process.env.REACT_APP_MONGODB + '/products/addProduct', {
             ...productInfo
         })
-            .then(
-                this.setState({addingProductLoading: false, addingProduct: false}, () => {
-                    this.getProducts()
-                })
+            .then(() => {
+                this.setState({addingProductLoading: false, addingProduct: false})
+                this.getProducts()
+            }
+                
             )        
     }
 
