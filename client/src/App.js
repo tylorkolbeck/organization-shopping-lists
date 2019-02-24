@@ -18,6 +18,7 @@ import asyncComponent from '../src/utilities/AsyncComponent'
 // Containers
 import ShoppingLists from '../src/Containers/ShoppingLists/ShoppingLists'
 import Carts from '../src/Containers/Carts/Carts'
+import Login from '../src/Containers/Login/Login'
 
 // IMPORT FOR LAZY LOADING
 const Products = asyncComponent(() => 
@@ -77,7 +78,7 @@ class App extends Component {
                       <span>Carts</span>
                   </Link>
                    
-                  <Link to="/products">
+                  <Link to="/login">
                       <span>Login</span>
                   </Link>
                 </div>
@@ -92,6 +93,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/products" component={Products} />
+              <Route path="/login" component={Login} />
               {/* <Route path="/shoppingLists/:cartId" component={Cart} /> */}
               {/* <Route path="/carts" component={Carts} /> */}
               <Route path="/carts" render={(props) => (<Carts updateCarts={this.getShoppingListNames.bind(this)} carts={this.state.carts}/>)} />

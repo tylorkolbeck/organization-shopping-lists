@@ -6,6 +6,7 @@ import './Products.css'
 class Products extends Component {
     state = {
         loading: false,
+        error: false,
         products: false,
         searchPhrase: ''
     }
@@ -26,22 +27,17 @@ class Products extends Component {
 
     searchProducts(e) {
         e.preventDefault()
-        console.log(this.state.searchPhrase.length)
         if (this.state.searchPhrase.length) {
             axios.get(process.env.REACT_APP_MONGODB + '/products/search/' + this.state.searchPhrase)
                 .then((result) => {
-                    console.log(result.data.products)
                     this.setState({products: result.data.products})
                 })
                 .catch((error) => {
-                    console.log(error)
+                    this.setState({error: error})
                 })
         } else {
-            console.log('Not searching')
             this.getProducts()
         }
-        
-
     }
 
 
@@ -63,7 +59,6 @@ class Products extends Component {
                         countPerPackage={prd.countPerPackage}
                     />
                 )
-                
             })
         }
 
