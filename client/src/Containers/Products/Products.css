@@ -1,0 +1,26 @@
+.Products__product_search {
+    width: 250px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 5px;
+    font-size: 1.1rem;
+    border-radius: 3px;
+    outline: none;
+    border: 1px solid rgb(42,98,147, .5);
+}
+
+.Products__search_container {
+    /* background: yellow; */
+    text-align: center;
+}
+
+.Products__search_btn {
+    padding: 8px;
+    margin-left: 10px;
+    background: lightgrey;
+    border: 1px solid rgb(42,98,147, .5);
+    border-radius: 3px;
+
+}
+

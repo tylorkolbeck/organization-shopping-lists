@@ -19,3 +19,19 @@ exports.productsGetAll = (req, res, next) => {
             })
         })
 }
+
+exports.productSearch = (req, res, next) => {
+    console.log(req.params.phrase)
+    Product.find({$text: {$search: req.params.phrase}}, (error, result) => {
+        if (!error) {
+            res.status(200).json({
+                products: result
+            })
+        } else {
+            res.status(500).json({
+                error: error
+            })
+        }
+    })
+    // > db.products.find({$text: {$search: "frito"}})
+}
