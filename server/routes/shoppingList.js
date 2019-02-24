@@ -9,6 +9,7 @@ router.patch('/addToCart', shoppingListController.addToShoppingList)
 router.delete('/delete', shoppingListController.removeItemFromCart)
 router.patch('/updateQuantity', shoppingListController.updateQuantityInCart)
 router.post('/addCart', shoppingListController.addCart)
+router.delete('/removeCart/:cartId', shoppingListController.removeCart)
 router.get('/:cartId', shoppingListController.getShoppingList)
 
 module.exports = router;

@@ -28,7 +28,7 @@ class CartsNav extends Component {
         /*
             if the component state has the activeCarts array from 
             redux then determine if the active state needs to be checked or not for 
-            this instanve of the cartList component.
+            this instance of the cartList component.
         */
         if (this.props.activeCarts) {
             if (this.props.activeCarts.includes(this.props.id)) {
@@ -58,6 +58,7 @@ class CartsNav extends Component {
 const mapStateToProps = state => {
     return {
         activeCarts: state.activeCarts,
+        carts: state.carts
     }
 }
 

@@ -214,3 +214,19 @@ exports.addCart = (req, res, next) => {
         }
     })
 }
+
+exports.removeCart = (req, res, next) => {
+    console.log('------', req.params.cartId)
+    ShoppingList.deleteOne({_id: req.params.cartId}, (error, result) => {
+        if (!error) {
+            res.status(200).json({
+                message: 'deleted cart from DB'
+            })
+        } else {
+            res.status(500).json({
+                message: 'error',
+                error: error
+            })
+        }
+    })
+}

@@ -5,9 +5,7 @@ a CartsNav component to make a shopping lists navigation.
 */
 
 import React, { Component } from 'react'
-import axios from 'axios'
 import CartsNav from '../../Components/CartsNav/CartsNav'
-// import { Link } from 'react-router-dom'
 
 import './ShoppingLists.css'
 
@@ -19,21 +17,11 @@ class shoppingLists extends Component {
         activeCarts: []
     }
 
-    componentDidMount() {
-        if (!this.state.products) {
-            this.setState({loading: true})
-            axios.get(process.env.REACT_APP_MONGODB + '/shoppingLists/cartNames')
-                .then(response => {
-                    this.setState({carts: response.data.carts, loading: false})
-                })
-        }
-    }
-
     render() {
         let cartLinks = null
 
-        if (this.state.carts) {
-            cartLinks = this.state.carts.map(cart => {
+        if (this.props.carts) {
+            cartLinks = this.props.carts.map(cart => {
                 return (
                     <div key={cart.id}>
                         <CartsNav 
@@ -45,34 +33,11 @@ class shoppingLists extends Component {
                 )
             })
         }
-        
-        // TODO:
-        // if (this.state.carts) {
-        //     cartLinks = 
-        //     this.state.carts.map(cart => {
-        //         return (
-        //             <option value={cart.id} key={cart.id}>{cart.name}</option>                
-        //         )
-        //     })
-        // }
 
         return (
-            // TODO:
-            // <div className="CartsNav__container">
-                // <div className="styled" onChange={console.log(this.state.activeCarts)}>
-                //     <select>
-                //             {cartLinks}
-                //     </select>
-                // </div>
-            // </div>
-
             <div className="CartsNav__container">
                 <ul>
                     {cartLinks}
-                    {/* <li className="ShoppingLists__edit_carts">
-                        <Link to={`/editCarts`}>Edit Carts</Link>
-                        <Link to={`/editCarts`}>Edit Carts</Link>
-                    </li> */}
                 </ul>
 
 
@@ -80,7 +45,5 @@ class shoppingLists extends Component {
         )
     }
 }
-
-
 
 export default shoppingLists

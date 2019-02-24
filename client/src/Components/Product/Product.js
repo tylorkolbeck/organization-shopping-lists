@@ -12,10 +12,6 @@ class Product extends Component {
     addedToCart: true,
   }
 
-  componentDidMount() {
-    console.log('ACTIVE CARTs', this.props.activeCarts)
-  }
-
   incrementQuantity() {
     let quantity = this.state.quantity
     quantity++ 

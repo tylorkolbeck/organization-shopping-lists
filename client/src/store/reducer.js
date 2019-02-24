@@ -2,8 +2,12 @@
  @Array - activeCarts - an array containg which carts are active for adding items to. 
 */
 
+import axios from 'axios'
+
 const initialState = {
     activeCarts: [],
+    carts: false,
+    loadingCarts: false
     // TODO: Add user functionality to lock the app down
 }
 
@@ -45,10 +49,32 @@ const reducer = (state = initialState, action) => {
             //         activeCarts: [...state.activeCarts, action.cartId]
             //     }
             // }
-            console.log('[ACTIVE CART/s]', state.activeCarts)
             break
-        case "SOMETHING_ELSE":
-            console.log('SOMETHINGELSE')
+
+        case "GET_CARTS":
+            console.log('GETTING CARTS')
+
+            axios.get(process.env.REACT_APP_MONGODB + '/shoppingLists/cartNames')
+                state = {
+                    ...state,
+                    loadingCarts: true
+                }
+                .then(response => {
+                    let carts = response.data.carts
+                    
+                    state = {
+                        ...state,
+                        loadingCarts: false,
+                        carts: carts
+                    }
+                    console.log(state)
+            })
+            
+        
+
+
+
+
             break
         default:
             return state

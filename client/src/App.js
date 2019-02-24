@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'
 
 import './App.css'
+import axios from 'axios'
 
 // import Products from '../src/Containers/Products/Products'
 // import Home from '../src/Containers/Home/Home'
@@ -39,8 +40,26 @@ const history = createBrowserHistory()
 
 class App extends Component {
   state = {
-    activeCarts: []
+    activeCarts: [],
+    carts: false
   }
+
+  componentDidMount() {
+    if (!this.state.carts) {
+      this.getShoppingListNames()
+    }
+  }
+
+  getShoppingListNames() {
+    this.setState({loading: true})
+    axios.get(process.env.REACT_APP_MONGODB + '/shoppingLists/cartNames')
+        .then(response => {
+            this.setState({carts: response.data.carts, loading: false}, () => {
+              this.setState({loading: false})
+            })
+        })
+  }
+
 
   render() {
     return (
@@ -63,7 +82,7 @@ class App extends Component {
                   </Link>
                 </div>
                 
-                <ShoppingLists />
+                <ShoppingLists carts={this.state.carts} updateCarts={this.getShoppingListNames.bind(this)}/>
                 
               </div>
             </nav>
@@ -74,7 +93,8 @@ class App extends Component {
               <Route exact path="/" component={Home} />
               <Route path="/products" component={Products} />
               {/* <Route path="/shoppingLists/:cartId" component={Cart} /> */}
-              <Route path="/carts" component={Carts} />
+              {/* <Route path="/carts" component={Carts} /> */}
+              <Route path="/carts" render={(props) => (<Carts updateCarts={this.getShoppingListNames.bind(this)} carts={this.state.carts}/>)} />
               <Route path="/shoppingLists/:cartId" render={(props) => (
                 <Cart key={props.match.params.cartId} {...props}/>
               )} />
