@@ -2,14 +2,18 @@ import React, { Component } from 'react'
 import Product from '../../Components/Product/Product'
 import axios from 'axios'
 import './Products.css'
+import AddProduct from '../AddProduct/AddProduct'
 
 class Products extends Component {
     state = {
         loading: false,
         error: false,
         products: false,
-        searchPhrase: ''
+        searchPhrase: '',
+        addingProduct: false,
+        addingProductLoading: false
     }
+
     componentDidMount() {
         if (!this.state.products) {
             this.getProducts()
@@ -40,8 +44,30 @@ class Products extends Component {
         }
     }
 
+    toggleAddProduct(e) {
+        e.preventDefault()
+        this.setState({addingProduct: !this.state.addingProduct})
+    }
+
+    addProductToHandler(e, productInfo) {
+        e.preventDefault()
+        this.setState({addingProductLoading: true})
+
+        axios.post(process.env.REACT_APP_MONGODB + '/products/addProduct', {
+            ...productInfo
+        })
+            .then(
+                this.setState({addingProductLoading: false, addingProduct: false}, () => {
+                    this.getProducts()
+                })
+            )        
+    }
+
 
     render() {
+        let addProductView = null
+
+        addProductView = this.state.addingProduct ? <AddProduct loading={this.state.addingProductLoading} addProduct={this.addProductToHandler.bind(this)}/> : null
         let loading = this.state.loading ? "Fetching Products" : null
         let products = null
         if (this.state.products) {
@@ -65,6 +91,7 @@ class Products extends Component {
         return (
             <div>
                 <div className="Products__search_container">
+                
                     <form onSubmit={this.searchProducts.bind(this)}>
                         <input 
                             type="text" 
@@ -74,9 +101,11 @@ class Products extends Component {
                             ></input>
                         <button className="Products__search_btn">Search </button>
                     </form>
+
+                    <button className="AddProduct__toggle_add_product_button" onClick={this.toggleAddProduct.bind(this)}>Add A Product</button>
+
+                    {addProductView}
                 </div>
-                
-                
                 
                 <div className="Product__container">
                     {products}
